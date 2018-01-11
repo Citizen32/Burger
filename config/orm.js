@@ -21,7 +21,7 @@ var orm = {
             callback(result);
         });
     },
-
+    
     updateOne: function(table, colName, burgerId, callback){
 
         var queryString = "UPDATE " + table + " SET" + colName + "=1 " + " WHERE id=" + burgerId;
@@ -33,5 +33,16 @@ var orm = {
         });
     },
 
-    deleteOne: function
-}
+    deleteOne: function(table, burgerId, callback){
+        
+        var queryString = "DELETE FROM" + table + "WHERE id = " + burgerId;
+        console.log(queryString);
+
+        connection.query(queryString, function(err, result){
+            if (err) throw err;
+            callback(result);
+        });
+    }
+};
+
+module.exports = orm;
